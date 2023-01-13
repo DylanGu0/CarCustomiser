@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A275A3662971FF710033AF88 /* StarterCars.swift in Sources */ = {isa = PBXBuildFile; fileRef = A275A3652971FF710033AF88 /* StarterCars.swift */; };
 		A2BAB43A2970B42D005B06B3 /* CarCustomiserApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAB4392970B42D005B06B3 /* CarCustomiserApp.swift */; };
 		A2BAB43C2970B42D005B06B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BAB43B2970B42D005B06B3 /* ContentView.swift */; };
 		A2BAB43E2970B42E005B06B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2BAB43D2970B42E005B06B3 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A275A3652971FF710033AF88 /* StarterCars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterCars.swift; sourceTree = "<group>"; };
 		A2BAB4362970B42D005B06B3 /* CarCustomiser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarCustomiser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2BAB4392970B42D005B06B3 /* CarCustomiserApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCustomiserApp.swift; sourceTree = "<group>"; };
 		A2BAB43B2970B42D005B06B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				A2BAB43D2970B42E005B06B3 /* Assets.xcassets */,
 				A2BAB43F2970B42E005B06B3 /* Preview Content */,
 				A2BAB4632970B68B005B06B3 /* Car.swift */,
+				A275A3652971FF710033AF88 /* StarterCars.swift */,
 			);
 			path = CarCustomiser;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				A2BAB43C2970B42D005B06B3 /* ContentView.swift in Sources */,
 				A2BAB43A2970B42D005B06B3 /* CarCustomiserApp.swift in Sources */,
+				A275A3662971FF710033AF88 /* StarterCars.swift in Sources */,
 				A2BAB4642970B68B005B06B3 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
