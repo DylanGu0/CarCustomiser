@@ -15,34 +15,41 @@ struct ContentView: View {
     @State private var turboBoost = false
     @State private var extraWeight = false
     @State private var remainingFunds = 1000
+    @State private var remainingTime = 30
     
     var exhaustPackageDisabled: Bool {
-        if remainingFunds < 500 && exhaustPackage == false {
+        if exhaustPackage == false && remainingFunds < 500 {
             return true
         }
-        return false
+        return remainingTime <= 0 ? true : false
     }
     
     var tiresPackageDisabled: Bool {
-        if remainingFunds < 500 && tiresPackage == false {
+        if tiresPackage == false && remainingFunds < 500 {
             return true
         }
-        return false
+        return remainingTime <= 0 ? true : false
     }
     
     var turboBoostDisabled: Bool {
-        if remainingFunds < 500 && turboBoost == false {
+        if turboBoost == false && remainingFunds < 500 {
             return true
         }
-        return false
+        return remainingTime <= 0 ? true : false
     }
     
     var extraWeightDisabled: Bool {
-        if remainingFunds < 1000 && extraWeight == false {
+        if extraWeight == false && remainingFunds < 1000 {
             return true
         }
-        return false
+        return remainingTime <= 0 ? true : false
     }
+    
+    var nextCarDisabled: Bool {
+        return remainingTime <= 0 ? true : false
+    }
+    
+    let timer = Timer.publish(every: 1, on:.main, in: .common).autoconnect()
     
     var body: some View {
         let exhaustPackageBinding = Binding<Bool> (
@@ -68,6 +75,7 @@ struct ContentView: View {
                     remainingFunds -= 500
                 } else {
                     starterCars.cars[selectedCar].handling -= 2
+                    remainingFunds += 500
                 }
             }
         )
@@ -105,6 +113,13 @@ struct ContentView: View {
         )
         
         VStack {
+            Text("\(remainingTime)")
+                .onReceive(timer) {_ in
+                    if self.remainingTime > 0 {
+                        self.remainingTime -= 1
+                    }
+                }
+                .foregroundColor(.red)
             Form {
                 VStack(alignment: .leading, spacing: 20) {
                     Text(starterCars.cars[selectedCar].displayStats())
@@ -114,16 +129,16 @@ struct ContentView: View {
                         if selectedCar == starterCars.cars.count{
                             selectedCar = 0
                         }
-                    })
+                    }) .disabled(nextCarDisabled)
                 }
                 Section {
-                    Toggle("Exhaust Package     (Cost: 500)", isOn: exhaustPackageBinding)
+                    Toggle("Exhaust Package (Cost: 500)", isOn: exhaustPackageBinding)
                         .disabled(exhaustPackageDisabled)
-                    Toggle("Tires Package     (Cost: 500)", isOn: tiresPackageBinding)
+                    Toggle("Tires Package (Cost: 500)", isOn: tiresPackageBinding)
                         .disabled(tiresPackageDisabled)
-                    Toggle("Turbo Boost     (Cost: 500)", isOn: turboBoostBinding)
+                    Toggle("Turbo Boost (Cost: 500)", isOn: turboBoostBinding)
                         .disabled(turboBoostDisabled)
-                    Toggle("Extra Weight     (Cost: 1000)", isOn: extraWeightBinding)
+                    Toggle("Extra Weight (Cost: 1000)", isOn: extraWeightBinding)
                         .disabled(extraWeightDisabled)
                 }
             }
